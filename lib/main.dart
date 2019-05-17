@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
+PageController controller;
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -20,7 +22,31 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: PageView(
+        controller: controller=PageController(
+          initialPage: 1
+        ),
+        children: <Widget>[
+          MyHomePage(title: 'Flutter Demo Home Page'),
+          Container(
+            color: Colors.cyan,
+            child: Column(
+              children: <Widget>[
+                Spacer(),
+                RaisedButton(
+                    child: Text("Next"),
+                    onPressed: ()=>controller.nextPage(duration: Duration(milliseconds: 500),curve: Curves.ease),
+                ),
+                Spacer()
+              ]
+              //
+            )
+          ),
+          Container(
+            color: Colors.deepPurple,
+          ),
+        ],
+      )
     );
   }
 }
